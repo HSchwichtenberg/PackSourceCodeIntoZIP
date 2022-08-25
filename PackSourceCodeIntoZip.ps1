@@ -30,7 +30,7 @@ $readmeToAdd =  [System.IO.Path]::Combine($PSScriptRoot, "Readme!!! Copyright Ha
 ### Register Windows Explorer Command for Directories
 if ((New-Object Security.Principal.WindowsPrincipal([Security.Principal.WindowsIdentity]::GetCurrent())).IsInRole([Security.Principal.WindowsBuiltInRole]::Administrator))
 {
-Write-Host "Registering this script in Registry as Windows Explorer Command for Directories..." -ForegroundColor Yellow
+Write-Host "Registering this script in Registry as Windows Explorer command for directories..." -ForegroundColor Yellow
 New-PSDrive -Name HKCR -PSProvider Registry -Root HKEY_CLASSES_ROOT
 
 $registryPath1 = "HKCR:\Directory\shell\$functionname\"
