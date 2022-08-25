@@ -8,7 +8,7 @@ Write-Host "Version: 2.0 / 08-25-2022" -ForegroundColor Cyan
 Write-Host "Author: Dr. Holger Schwichtenberg, wwww.IT-Visions.de, 2019-2022" -ForegroundColor Cyan
 Write-Host "Script: $PSScriptRoot\$($MyInvocation.MyCommand.Name)" -ForegroundColor Cyan
 
-$robocopy = Get-Command "robocopy2.exe" -ErrorAction SilentlyContinue
+$robocopy = Get-Command "robocopy.exe" -ErrorAction SilentlyContinue
 if ($robocopy -eq $null) 
 { 
  Write-Error "Script requires Robocopy.exe --> https://docs.microsoft.com/de-de/windows-server/administration/windows-commands/robocopy"
@@ -56,7 +56,6 @@ try
 {
  $path = $args[0] # Get first parameter
  if ($path -eq $null) { $path = get-location }
- $path = "T:\Skripttest\HelloWorld"
  Write-Host "Parameter: $path" 
 
  $name = [System.IO.Path]::GetFileNameWithoutExtension($path)
@@ -87,8 +86,7 @@ try
   Write-Host "Copying File $readmeToAdd to $tempfolder..." -ForegroundColor Yellow
   copy-item $readmeToAdd $tempfolder\
  }
-explorer $tempfolder
- return
+
  Write-Host "Compressing $tempfolder into $targetzip..." -ForegroundColor Yellow
  Compress-Archive -path $tempfolder $targetzip
 
