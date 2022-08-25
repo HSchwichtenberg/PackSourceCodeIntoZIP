@@ -8,6 +8,12 @@ Write-Host "Version: 2.0 / 08-25-2022" -ForegroundColor Cyan
 Write-Host "Author: Dr. Holger Schwichtenberg, wwww.IT-Visions.de, 2019-2022" -ForegroundColor Cyan
 Write-Host "Script: $PSScriptRoot\$($MyInvocation.MyCommand.Name)" -ForegroundColor Cyan
 
+$robocopy = Get-Command "robocopy2.exe" -ErrorAction SilentlyContinue
+if ($robocopy -eq $null) 
+{ 
+ Write-Error "Script requires Robocopy.exe --> https://docs.microsoft.com/de-de/windows-server/administration/windows-commands/robocopy"
+}
+
 if (-not (New-Object Security.Principal.WindowsPrincipal([Security.Principal.WindowsIdentity]::GetCurrent())).IsInRole([Security.Principal.WindowsBuiltInRole]::Administrator))
 {
 Write-Host "Run script as admin to registry als Explorer command for directories!" -ForegroundColor white -BackgroundColor Cyan
@@ -15,9 +21,9 @@ Write-Host "Run script as admin to registry als Explorer command for directories
 #######################################################################################################################
 
 # Parameter (can be changed)
+$excludeDirs =  "" #"Application Files", ".vs", "node_modules", "AppPackages", "TestResults", "Packages", "obj", "debug", "release", ".git", "bin" 
+$excludeFile =  "" #"*.vssscc", ".gitattributes", ".gitignore", "UpgradeLog.htm", "*.rar", "*.zip"
 $readmeToAdd =  [System.IO.Path]::Combine($PSScriptRoot, "Readme!!! Copyright Haftungsausschluss Support.pdf")
-$excludeDirs =  "Application Files", ".vs", "node_modules", "AppPackages", "TestResults", "Packages", "obj", "debug", "release", ".git", "bin" 
-$excludeFile = "*.vssscc", ".gitattributes", ".gitignore", "UpgradeLog.htm", "*.rar", "*.zip"
 
 #######################################################################################################################
 
@@ -50,6 +56,7 @@ try
 {
  $path = $args[0] # Get first parameter
  if ($path -eq $null) { $path = get-location }
+ $path = "T:\Skripttest\HelloWorld"
  Write-Host "Parameter: $path" 
 
  $name = [System.IO.Path]::GetFileNameWithoutExtension($path)
@@ -71,7 +78,7 @@ try
  }
 
  Write-Host "Copying from $path to $tempfolder ..." -ForegroundColor Yellow
- $command = "robocopy $path $tempfolder /MIR /NP /purge /XA:SH /E /R:0 /TEE " # +($excludeDirs -join " /XD ") + " " + ($excludeFile -join " /XF ")
+ $command = "robocopy $path $tempfolder /MIR /NP /purge /XA:SH /R:0 /TEE /XD " + ($excludeDirs -join " /XD ") + " /XF " + ($excludeFile -join " /XF ")
  $command
  Invoke-expression $command 
 
@@ -80,7 +87,8 @@ try
   Write-Host "Copying File $readmeToAdd to $tempfolder..." -ForegroundColor Yellow
   copy-item $readmeToAdd $tempfolder\
  }
-
+explorer $tempfolder
+ return
  Write-Host "Compressing $tempfolder into $targetzip..." -ForegroundColor Yellow
  Compress-Archive -path $tempfolder $targetzip
 
@@ -89,6 +97,6 @@ try
  Write-Host "DONE!" -ForegroundColor green
 }
 catch{
-    Write-Host "Error: $($_.Exception.Message)" -ForegroundColor red
+    Write-Error "$($_.Exception.Message)"
     Read-Host "Press ENTER to exit"
 }
