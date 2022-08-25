@@ -41,7 +41,7 @@ New-PSDrive -Name HKCR -PSProvider Registry -Root HKEY_CLASSES_ROOT
 
 $registryPath1 = "HKCR:\Directory\shell\$functionname\"
 mkdir $registryPath1 -Force
-New-ItemProperty -Path $registryPath1 -Name "Icon" -Value "$PSScriptRoot\koffer.ico" -PropertyType String -Force | Out-Null
+New-ItemProperty -Path $registryPath1 -Name "Icon" -Value "$PSScriptRoot\PackSourceCodeIntoZip.ico" -PropertyType String -Force | Out-Null
 
 $registryPath2 = "HKCR:\Directory\shell\$functionname\Command"
 mkdir $registryPath2 -Force

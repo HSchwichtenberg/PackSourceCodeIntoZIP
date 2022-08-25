@@ -12,3 +12,7 @@ Packs your Source Code into a ZIP <b>without</b> binaries and other artifacts!
 
 - You can configure the directories and files to exclude within the script ($excludeDirs, $excludeFiles)
 - You can configure an optional Readme file to add to all ZIP ($readmeFile)
+
+# Source of Icon
+
+<a href="https://www.flaticon.com/de/kostenlose-icons/ausflug" title="ausflug Icons">Flaticon</a>
