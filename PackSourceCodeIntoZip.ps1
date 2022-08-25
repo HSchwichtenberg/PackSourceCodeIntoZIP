@@ -8,6 +8,17 @@ Write-Host "Version: 2.0 / 08-25-2022" -ForegroundColor Cyan
 Write-Host "Author: Dr. Holger Schwichtenberg, wwww.IT-Visions.de, 2019-2022" -ForegroundColor Cyan
 Write-Host "Script: $PSScriptRoot\$($MyInvocation.MyCommand.Name)" -ForegroundColor Cyan
 
+#######################################################################################################################
+# Parameters (can be changed)
+#######################################################################################################################
+$excludeDirs =  "Application Files", ".vs", "node_modules", "AppPackages", "TestResults", "Packages", "obj", "debug", "release", ".git", "bin" 
+$excludeFile =  "*.vssscc", ".gitattributes", ".gitignore", "UpgradeLog.htm", "*.rar", "*.zip"
+$readmeToAdd =  [System.IO.Path]::Combine($PSScriptRoot, "Readme!!! Copyright Haftungsausschluss Support.pdf")
+
+#######################################################################################################################
+# Checks
+#######################################################################################################################
+
 $robocopy = Get-Command "robocopy.exe" -ErrorAction SilentlyContinue
 if ($null -eq $robocopy) 
 { 
@@ -18,16 +29,11 @@ if (-not (New-Object Security.Principal.WindowsPrincipal([Security.Principal.Win
 {
 Write-Host "Run script as admin to registry als Explorer command for directories!" -ForegroundColor white -BackgroundColor Cyan
 }
-#######################################################################################################################
-
-# Parameters (can be changed)
-$excludeDirs =  "Application Files", ".vs", "node_modules", "AppPackages", "TestResults", "Packages", "obj", "debug", "release", ".git", "bin" 
-$excludeFile =  "*.vssscc", ".gitattributes", ".gitignore", "UpgradeLog.htm", "*.rar", "*.zip"
-$readmeToAdd =  [System.IO.Path]::Combine($PSScriptRoot, "Readme!!! Copyright Haftungsausschluss Support.pdf")
 
 #######################################################################################################################
+# Register Windows Explorer Command for Directories
+#######################################################################################################################
 
-### Register Windows Explorer Command for Directories
 if ((New-Object Security.Principal.WindowsPrincipal([Security.Principal.WindowsIdentity]::GetCurrent())).IsInRole([Security.Principal.WindowsBuiltInRole]::Administrator))
 {
 Write-Host "Registering this script in Registry as Windows Explorer command for directories..." -ForegroundColor Yellow
@@ -51,7 +57,8 @@ return
 }
 
 #######################################################################################################################
-
+# Main
+#######################################################################################################################
 try
 {
  $path = $args[0] # Get first parameter
