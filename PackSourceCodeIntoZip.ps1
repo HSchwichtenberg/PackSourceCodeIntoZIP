@@ -1,4 +1,4 @@
-﻿cls
+﻿Clear-Host
 $ErrorActionPreference = "Stop"; #  Make all errors terminating
 
 $functionname = "Pack Source Code into ZIP"
@@ -9,7 +9,7 @@ Write-Host "Author: Dr. Holger Schwichtenberg, wwww.IT-Visions.de, 2019-2022" -F
 Write-Host "Script: $PSScriptRoot\$($MyInvocation.MyCommand.Name)" -ForegroundColor Cyan
 
 $robocopy = Get-Command "robocopy.exe" -ErrorAction SilentlyContinue
-if ($robocopy -eq $null) 
+if ($null -eq $robocopy) 
 { 
  Write-Error "Script requires Robocopy.exe --> https://docs.microsoft.com/de-de/windows-server/administration/windows-commands/robocopy"
 }
@@ -55,7 +55,7 @@ return
 try
 {
  $path = $args[0] # Get first parameter
- if ($path -eq $null) { $path = get-location }
+ if ($null -eq $path) { $path = get-location }
  Write-Host "Parameter: $path" 
 
  $name = [System.IO.Path]::GetFileNameWithoutExtension($path)
