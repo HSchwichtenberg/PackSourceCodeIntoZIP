@@ -1,4 +1,4 @@
-# Pack Source Code Into ZIP using a PowerShell Script registered as Windows Explorer command for directories
+# Pack Source Code into ZIP using a PowerShell Script registered as Windows Explorer command for directories
 
 Packs your Source Code into a ZIP <b>without</b> binaries and other artifacts!
 
@@ -10,5 +10,5 @@ Packs your Source Code into a ZIP <b>without</b> binaries and other artifacts!
 
 # Configuration
 
-- You can configure the directories and files to exclude within the script ($excludeDirs, $excludeFile)
+- You can configure the directories and files to exclude within the script ($excludeDirs, $excludeFiles)
 - You can configure an optional Readme file to add to all ZIP ($readmeToAdd)
