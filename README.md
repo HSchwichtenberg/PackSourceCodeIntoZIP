@@ -1,6 +1,6 @@
 # PackSourceCodeIntoZIP
 
-Pack Source Code into ZIP <b>withouty</b> binaries and other artifacts
+Pack Source Code into ZIP <b>without</b> binaries and other artifacts
 
 1. Run this script as admin to register this script in the Registry as Windows Explorer command for directories
 2. Now run the script from the Windows Explorer on any directory containing code :-)
