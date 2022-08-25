@@ -12,7 +12,7 @@ Write-Host "Script: $PSScriptRoot\$($MyInvocation.MyCommand.Name)" -ForegroundCo
 # Parameters (can be changed)
 #######################################################################################################################
 $excludeDirs =  "Application Files", ".vs", "node_modules", "AppPackages", "TestResults", "Packages", "obj", "debug", "release", ".git", "bin" 
-$excludeFile =  "*.vssscc", ".gitattributes", ".gitignore", "UpgradeLog.htm", "*.rar", "*.zip"
+$excludeFiles =  "*.vssscc", ".gitattributes", ".gitignore", "UpgradeLog.htm", "*.rar", "*.zip"
 $readmeToAdd =  [System.IO.Path]::Combine($PSScriptRoot, "Readme!!! Copyright Haftungsausschluss Support.pdf")
 
 #######################################################################################################################
@@ -84,7 +84,7 @@ try
  }
 
  Write-Host "Copying from $path to $tempfolder ..." -ForegroundColor Yellow
- $command = "robocopy $path $tempfolder /MIR /NP /purge /XA:SH /R:0 /TEE /XD " + ($excludeDirs -join " /XD ") + " /XF " + ($excludeFile -join " /XF ")
+ $command = "robocopy $path $tempfolder /MIR /NP /purge /XA:SH /R:0 /TEE /XD " + ($excludeDirs -join " /XD ") + " /XF " + ($excludeFiles -join " /XF ")
  $command
  Invoke-expression $command 
 
