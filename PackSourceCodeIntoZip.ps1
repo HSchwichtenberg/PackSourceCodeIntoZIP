@@ -20,9 +20,9 @@ Write-Host "Run script as admin to registry als Explorer command for directories
 }
 #######################################################################################################################
 
-# Parameter (can be changed)
-$excludeDirs =  "" #"Application Files", ".vs", "node_modules", "AppPackages", "TestResults", "Packages", "obj", "debug", "release", ".git", "bin" 
-$excludeFile =  "" #"*.vssscc", ".gitattributes", ".gitignore", "UpgradeLog.htm", "*.rar", "*.zip"
+# Parameters (can be changed)
+$excludeDirs =  "Application Files", ".vs", "node_modules", "AppPackages", "TestResults", "Packages", "obj", "debug", "release", ".git", "bin" 
+$excludeFile =  "*.vssscc", ".gitattributes", ".gitignore", "UpgradeLog.htm", "*.rar", "*.zip"
 $readmeToAdd =  [System.IO.Path]::Combine($PSScriptRoot, "Readme!!! Copyright Haftungsausschluss Support.pdf")
 
 #######################################################################################################################
