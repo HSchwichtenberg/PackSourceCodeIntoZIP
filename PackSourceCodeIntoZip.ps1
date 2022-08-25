@@ -11,9 +11,9 @@ Write-Host "Script: $PSScriptRoot\$($MyInvocation.MyCommand.Name)" -ForegroundCo
 #######################################################################################################################
 # Parameters (can be changed)
 #######################################################################################################################
-$excludeDirs =  "Application Files", ".vs", "node_modules", "AppPackages", "TestResults", "Packages", "obj", "debug", "release", ".git", "bin" 
-$excludeFiles =  "*.vssscc", ".gitattributes", ".gitignore", "UpgradeLog.htm", "*.rar", "*.zip"
-$readmeToAdd =  [System.IO.Path]::Combine($PSScriptRoot, "Readme!!! Copyright Haftungsausschluss Support.pdf")
+$excludeDirs = "Application Files", ".vs", "node_modules", "AppPackages", "TestResults", "Packages", "obj", "debug", "release", ".git", "bin" 
+$excludeFiles = "*.vssscc", ".gitattributes", ".gitignore", "UpgradeLog.htm", "*.rar", "*.zip"
+$readmeFile = [System.IO.Path]::Combine($PSScriptRoot, "Readme!!! Copyright Haftungsausschluss Support.pdf")
 
 #######################################################################################################################
 # Checks
@@ -88,10 +88,10 @@ try
  $command
  Invoke-expression $command 
 
- if (-not [System.String]::IsNullOrEmpty(($readmeToAdd)) -and [System.IO.File]::Exists($readmeToAdd))
+ if (-not [System.String]::IsNullOrEmpty(($readmeFile)) -and [System.IO.File]::Exists($readmeFile))
  {
-  Write-Host "Copying File $readmeToAdd to $tempfolder..." -ForegroundColor Yellow
-  copy-item $readmeToAdd $tempfolder\
+  Write-Host "Copying File $readmeFile to $tempfolder..." -ForegroundColor Yellow
+  copy-item $readmeFile $tempfolder\
  }
 
  Write-Host "Compressing $tempfolder into $targetzip..." -ForegroundColor Yellow
