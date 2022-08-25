@@ -1,4 +1,4 @@
-# PackSourceCodeIntoZIP
+# Pack Source Code Into ZIP using a PowerShell Script registered as Windows Explorer command for directories
 
 Pack Source Code into ZIP <b>without</b> binaries and other artifacts
 
