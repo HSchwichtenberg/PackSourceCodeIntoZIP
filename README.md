@@ -11,7 +11,7 @@ Packs your Source Code into a ZIP <b>without</b> binaries and other artifacts!
 # Configuration
 
 - You can configure the directories and files to exclude within the script ($excludeDirs, $excludeFiles)
-- You can configure an optional Readme file to add to all ZIP ($readmeFile)
+- You can configure an optional Readme file to add to all created ZIP archives ($readmeFile)
 
 # Source of the used icon
 
