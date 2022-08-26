@@ -1,12 +1,12 @@
-﻿Clear-Host
-$ErrorActionPreference = "Stop"; #  Make all errors terminating
+﻿$ErrorActionPreference = "Stop"; #  Make all errors terminating
 
 $functionname = "Pack Source Code into ZIP"
 Write-Host $functionname -ForegroundColor Cyan
-Write-host "Pack Source Code into ZIP without binaries and other artifacts"  -ForegroundColor Cyan
-Write-Host "Version: 2.0 / 08-25-2022" -ForegroundColor Cyan
+Write-host "Creates a ZIP archiche without binaries and other artifacts"  -ForegroundColor Cyan
+Write-Host "Version: 2.0.1 / 08-26-2022" -ForegroundColor Cyan
 Write-Host "Author: Dr. Holger Schwichtenberg, wwww.IT-Visions.de, 2019-2022" -ForegroundColor Cyan
-Write-Host "Script: $PSScriptRoot\$($MyInvocation.MyCommand.Name)" -ForegroundColor Cyan
+Write-Host "Script Location: $PSScriptRoot\$($MyInvocation.MyCommand.Name)" -ForegroundColor Cyan
+Write-Host ("-" *(Get-Host).UI.RawUI.MaxWindowSize.Width + "`n") -ForegroundColor Cyan
 
 #######################################################################################################################
 # Parameters (can be changed)
@@ -36,24 +36,23 @@ Write-Host "Run script as admin to registry als Explorer command for directories
 
 if ((New-Object Security.Principal.WindowsPrincipal([Security.Principal.WindowsIdentity]::GetCurrent())).IsInRole([Security.Principal.WindowsBuiltInRole]::Administrator))
 {
-Write-Host "Registering this script in Registry as Windows Explorer command for directories..." -ForegroundColor Yellow
-New-PSDrive -Name HKCR -PSProvider Registry -Root HKEY_CLASSES_ROOT
+ Write-Host "Running as Admin --> Registering this script in Registry as Windows Explorer command for directories..." -ForegroundColor Yellow
+ New-PSDrive -Name HKCR -PSProvider Registry -Root HKEY_CLASSES_ROOT | Out-Null 
 
-$registryPath1 = "HKCR:\Directory\shell\$functionname\"
-mkdir $registryPath1 -Force
-New-ItemProperty -Path $registryPath1 -Name "Icon" -Value "$PSScriptRoot\PackSourceCodeIntoZip.ico" -PropertyType String -Force | Out-Null
+ $registryPath1 = "HKCR:\Directory\shell\$functionname\"
+ mkdir $registryPath1 -Force | Out-Null 
+ New-ItemProperty -Path $registryPath1 -Name "Icon" -Value "$PSScriptRoot\PackSourceCodeIntoZip.ico" -PropertyType String -Force | Out-Null 
 
-$registryPath2 = "HKCR:\Directory\shell\$functionname\Command"
-mkdir $registryPath2 -Force
+ $registryPath2 = "HKCR:\Directory\shell\$functionname\Command"
+ mkdir $registryPath2 -Force | Out-Null 
 
-$Name = "(Default)"
-$value = 'powershell.exe -File "'  + $PSScriptRoot +"\" + $MyInvocation.MyCommand.Name + '" "%1"'
-"registryPath2:" + $registryPath2
-New-ItemProperty -Path $registryPath2 -Name $name -Value $value -PropertyType String -Force | Out-Null
+ $Name = "(Default)"
+ $value = 'powershell.exe -File "'  + $PSScriptRoot +"\" + $MyInvocation.MyCommand.Name + '" "%1"'
+ New-ItemProperty -Path $registryPath2 -Name $name -Value $value -PropertyType String -Force | Out-Null
 
  Write-Host "DONE! Now run the script from the Windows Explorer on any directory containing code :-)" -ForegroundColor green
 
-return
+ return
 }
 
 #######################################################################################################################
