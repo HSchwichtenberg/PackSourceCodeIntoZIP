@@ -70,7 +70,7 @@ try
  $tempfolder = [System.IO.Path]::Combine([System.IO.Path]::GetTempPath(),$name)
  $targetzip = [System.IO.Path]::Combine($pathParent,"$name.zip")
  Write-Host "Pack $name in $pathParent via $tempfolder into $targetzip..." -ForegroundColor Yellow
-return
+
  if ([System.IO.Directory]::Exists($tempfolder))
  {
   Write-Host "Removing $tempfolder..." -ForegroundColor Yellow
