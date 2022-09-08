@@ -3,7 +3,7 @@
 $functionname = "Pack Source Code into ZIP"
 Write-Host $functionname -ForegroundColor Cyan
 Write-host "Creates a ZIP archiche without binaries and other artifacts"  -ForegroundColor Cyan
-Write-Host "Version: 2.0.1 / 08-26-2022" -ForegroundColor Cyan
+Write-Host "Version: 2.0.2 / 09-08-2022" -ForegroundColor Cyan
 Write-Host "Author: Dr. Holger Schwichtenberg, wwww.IT-Visions.de, 2019-2022" -ForegroundColor Cyan
 Write-Host "Script Location: $PSScriptRoot\$($MyInvocation.MyCommand.Name)" -ForegroundColor Cyan
 Write-Host ("-" *(Get-Host).UI.RawUI.MaxWindowSize.Width + "`n") -ForegroundColor Cyan
@@ -62,14 +62,15 @@ try
 {
  $path = $args[0] # Get first parameter
  if ($null -eq $path) { $path = get-location }
+
  Write-Host "Parameter: $path" 
 
- $name = [System.IO.Path]::GetFileNameWithoutExtension($path)
+ $name = [System.IO.Path]::GetFileName($path)
  $pathParent = [System.IO.Path]::GetDirectoryName($path)
  $tempfolder = [System.IO.Path]::Combine([System.IO.Path]::GetTempPath(),$name)
  $targetzip = [System.IO.Path]::Combine($pathParent,"$name.zip")
  Write-Host "Pack $name in $pathParent via $tempfolder into $targetzip..." -ForegroundColor Yellow
-
+return
  if ([System.IO.Directory]::Exists($tempfolder))
  {
   Write-Host "Removing $tempfolder..." -ForegroundColor Yellow
