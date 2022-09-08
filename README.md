@@ -11,12 +11,12 @@ cannot run this script on the current system." either <a href="https://superuser
 powershell.exe -noprofile -executionpolicy bypass -file .\PackSourceCodeIntoZip.ps1
 </code>
 
-<img src="/Readme_Images/Readme_Installation.png" width="400">
+<img src="/Readme_Images/Readme_Installation.png" width="600">
 
 2. Now run the script from the Windows Explorer on any directory containing code :-)
 
-<img src="/Readme_Images/Readme_Run.png" width="400">
-<img src="/Readme_Images/Readme_Result.png" width="400">
+<img src="/Readme_Images/Readme_Run.png" width="600">
+<img src="/Readme_Images/Readme_Result.png" width="600">
 
 # Configuration
 
