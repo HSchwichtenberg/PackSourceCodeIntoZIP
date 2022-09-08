@@ -6,15 +6,17 @@ Packs your Source Code into a ZIP <b>without</b> binaries and other artifacts!
 
 The script is not signed! If you see an error "is not digitally signed. You
 cannot run this script on the current system." either <a href="https://superuser.com/questions/106360/how-to-enable-execution-of-powershell-scripts">change your execution policy or bypass the execution policy</a>:
+
 <code>
 powershell.exe -noprofile -executionpolicy bypass -file .\PackSourceCodeIntoZip.ps1
 </code>
-<img src="/Readme_Images/Readme_Installation.png" width="400">
+
+<img src="/Readme_Images/Readme_Installation.png" width="600">
 
 2. Now run the script from the Windows Explorer on any directory containing code :-)
 
-<img src="/Readme_Images/Readme_Run.png" width="400">
-<img src="/Readme_Images/Readme_Result.png" width="400">
+<img src="/Readme_Images/Readme_Run.png" width="600">
+<img src="/Readme_Images/Readme_Result.png" width="600">
 
 # Configuration
 
