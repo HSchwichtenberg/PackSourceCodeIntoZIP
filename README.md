@@ -28,6 +28,8 @@ cannot run this script on the current system." either <a href="https://superuser
 powershell.exe -noprofile -executionpolicy bypass -file .\PackSourceCodeIntoZip.ps1
 </code>
 
+<img src="/Readme_Images/Readme_InstallationByPass.png" width="600">
+
 <code>
 powershell.exe -noprofile -executionpolicy bypass -file .\PackSourceCodeIntoZip.ps1 "T:\temp\HelloWorld1.0"
 </code>
