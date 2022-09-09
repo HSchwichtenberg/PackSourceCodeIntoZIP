@@ -24,8 +24,8 @@ Alternative: Run Script from PowerShell console with the code directory as param
 
 The script is not signed! If you see an error "is not digitally signed. You
 cannot run this script on the current system." either
-- <a href="https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_signing">sign the script</a>
-- <a href="https://superuser.com/questions/106360/how-to-enable-execution-of-powershell-scripts">change your execution policy or 
+- <a href="https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_signing">sign the script</a>,
+- <a href="https://superuser.com/questions/106360/how-to-enable-execution-of-powershell-scripts">change your execution policy</a> or 
 - bypass the execution policy</a>:
 
 <code>
