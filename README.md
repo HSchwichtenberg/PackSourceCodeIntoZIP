@@ -11,7 +11,8 @@ Packs your Source Code into a ZIP <b>without</b> binaries and other artifacts!
 <img src="/Readme_Images/Readme_Run.png" width="600">
 <img src="/Readme_Images/Readme_Result1.png" width="600">
 <img src="/Readme_Images/Readme_Result2.png" width="600">
-Alternative: Run Script from powershell console
+
+Alternative: Run Script from PowerShell console with the code directory as parameter:
 
 <code>
 .\PackSourceCodeIntoZip.ps1 "T:\temp\HelloWorld1.0"
