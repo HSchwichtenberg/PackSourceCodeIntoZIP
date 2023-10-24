@@ -11,7 +11,7 @@ Write-Host ("-" *(Get-Host).UI.RawUI.MaxWindowSize.Width + "`n") -ForegroundColo
 #######################################################################################################################
 # Parameters (can be changed)
 #######################################################################################################################
-$excludeDirs = "Application Files", ".vs", "node_modules", "AppPackages", "TestResults", "Packages", "obj", "debug", "release", ".git", "bin" 
+$excludeDirs = "Application Files", ".vs", "node_modules", "AppPackages", "TestResults", "Packages", "obj", "debug", "release", ".git", "bin", "BundleArtifacts", "Artifacts"
 $excludeFiles = "*.vssscc", ".gitattributes", ".gitignore", "UpgradeLog.htm", "*.rar", "*.zip"
 $readmeFile = [System.IO.Path]::Combine($PSScriptRoot, "Readme!!! Copyright Haftungsausschluss Support.pdf")
 
